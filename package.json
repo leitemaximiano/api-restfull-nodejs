@@ -1,7 +1,19 @@
 {
   "name": "api-restfull-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "author": "Maximiano Leite <macio.pb.cg@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon . localhost 3000"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "dotenv": "^12.0.4",
+    "nodemon": "^2.0.15"
+  }
 }
