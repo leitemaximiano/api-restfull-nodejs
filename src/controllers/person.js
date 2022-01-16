@@ -51,6 +51,13 @@ async function update(request, response) {
 
         const personUpdated = await Person.updateOne({_id: id}, person);
 
+        if (personUpdated.matchedCount === 0) {
+            const data = {
+                message: 'Não foi encontrado a pessoa'
+            };
+            return response.status(422).json(data);
+        }
+
         return response.status(200).json(person);
     } catch (error) {
         const data = {
