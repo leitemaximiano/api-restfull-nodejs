@@ -35,6 +35,32 @@ async function getOne(request, response) {
     }
 }
 
+async function update(request, response) {
+    try {
+        const id = request.params.id;
+        const {
+            name,
+            salary,
+            approved
+        } = request.body;
+        const person = {
+            name,
+            salary,
+            approved
+        };
+
+        const personUpdated = await Person.updateOne({_id: id}, person);
+
+        return response.status(200).json(person);
+    } catch (error) {
+        const data = {
+            message: error.message,
+            stack: error.stack
+        };
+        return response.status(500).json(data);
+    }
+}
+
 async function create(request, response) {
     try {
         const {
@@ -77,4 +103,5 @@ module.exports = {
     create,
     getAll,
     getOne,
+    update,
 };

@@ -10,5 +10,6 @@ routes.get('/', function(request, response) {
 routes.get('/person', personControllers.getAll);
 routes.get('/person/:id', personControllers.getOne);
 routes.post('/person', personControllers.create);
+routes.patch('/person/:id', personControllers.update);
 
 module.exports = { routes };
