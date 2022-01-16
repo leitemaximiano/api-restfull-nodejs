@@ -17,6 +17,14 @@ async function getOne(request, response) {
     try {
         const id = request.params.id;
         const person = await Person.findOne({ _id: id });
+
+        if (!person) {
+            const data = {
+                message: 'Não foi encontrado nenhuma pessoa.'
+            };
+            return response.status(422).json(data);
+        }
+
         return response.status(200).json(person);
     } catch (error) {
         const data = {
