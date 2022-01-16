@@ -49,7 +49,7 @@ async function update(request, response) {
             approved
         };
 
-        const personUpdated = await Person.updateOne({_id: id}, person);
+        const personUpdated = await Person.updateOne({ _id: id }, person);
 
         if (personUpdated.matchedCount === 0) {
             const data = {
@@ -59,6 +59,31 @@ async function update(request, response) {
         }
 
         return response.status(200).json(person);
+    } catch (error) {
+        const data = {
+            message: error.message,
+            stack: error.stack
+        };
+        return response.status(500).json(data);
+    }
+}
+
+async function remove(request, response) {
+    try {
+        const id = request.params.id;
+        const person = await Person.findOne({ _id: id });
+        if (!person) {
+            const data = {
+                message: 'A pessoa não foi encontrada'
+            };
+            return response.status(422).json(data);
+        }
+        await Person.deleteOne({_id: id});
+
+        const data = {
+            message: 'A pessoa foi excluida com sucesso!'
+        };
+        return response.status(422).json(data);
     } catch (error) {
         const data = {
             message: error.message,
@@ -111,4 +136,5 @@ module.exports = {
     getAll,
     getOne,
     update,
+    remove
 };
