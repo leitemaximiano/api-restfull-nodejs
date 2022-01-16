@@ -13,6 +13,20 @@ async function getAll(request, response) {
     }
 }
 
+async function getOne(request, response) {
+    try {
+        const id = request.params.id;
+        const person = await Person.findOne({ _id: id });
+        return response.status(200).json(person);
+    } catch (error) {
+        const data = {
+            message: error.message,
+            stack: error.stack
+        };
+        return response.status(500).json(data);
+    }
+}
+
 async function create(request, response) {
     try {
         const {
@@ -53,5 +67,6 @@ async function create(request, response) {
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    getOne,
 };

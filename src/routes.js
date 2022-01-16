@@ -8,5 +8,7 @@ routes.get('/', function(request, response) {
 });
 
 routes.get('/person', personControllers.getAll);
+routes.get('/person/:id', personControllers.getOne);
 routes.post('/person', personControllers.create);
+
 module.exports = { routes };
