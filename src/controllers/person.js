@@ -8,11 +8,19 @@ async function create(request, response) {
             approved
         } = request.body;
 
+        if (!name) {
+            const data = {
+                message: 'Não foi possível cadastrar, é necessário o nome.'
+            }
+            return response.status(422).json(data);
+        }
+
         const person = {
             name,
             salary,
             approved
         };
+
 
         await Person.create(person);
 
