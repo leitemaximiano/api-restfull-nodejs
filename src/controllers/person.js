@@ -1,5 +1,18 @@
 const { Person } = require('../models');
 
+async function getAll(request, response) {
+    try {
+        const people = await Person.find({});
+        return response.status(200).json(people);
+    } catch (error) {
+        const data = {
+            message: error.message,
+            stack: error.stack
+        };
+        return response.status(500).json(data);
+    }
+}
+
 async function create(request, response) {
     try {
         const {
@@ -39,5 +52,6 @@ async function create(request, response) {
 }
 
 module.exports = {
-    create
+    create,
+    getAll
 };
