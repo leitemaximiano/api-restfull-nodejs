@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api restful com nodejs",
+        "description": "Está api é apenas para testar",
+        "termsOfService": "http://www.google.com",
+        "contact": "email@domian.com",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/v1",
+            "description": "uma api de test"
+        },
+        {
+            "url": "http://localhost/v1",
+            "description": "uma api de produção"
+        }
+    ],
+    "paths": {
+        "/person": {
+            "post": {
+                "sumary": "Adicionar usuário",
+                "description": "Adicionando usuário no sistema.",
+                "tags": [
+                    "Person"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Person"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Person": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "salary": {
+                        "type": "string"
+                    },
+                    "approved": {
+                        "type": "string"
+                    }
+                }
+            } 
+        }
+    }
+}
